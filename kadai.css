@@ -1,0 +1,39 @@
+body{
+
+    font-family: 'Hiragino Kaku Gothic ProN W3', sans-serif;
+    font-size: 14px;
+    color: #888;
+
+}
+
+.section-title{
+    background-color: #888;
+    color:white;
+    text-align: center;
+}
+
+
+.comment-section {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 4px #6091d3;/*線*/
+    border-radius: 10px;
+
+}
+
+.result{
+    text-align: center;
+}
+
+
+
+.delete-container{
+    margin: 10px;
+}
+
+.result{
+    text-align: center;
+}
