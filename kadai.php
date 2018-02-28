@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta http-equiv="content-type" charset="UTF-8">
-	<title>My Web Page</title>
-	 <link rel="stylesheet" href="kadai.css">
-</head>　
-
-<body>
-	<div class="comment-section">
-        <div class="section-title">
-            <h3>KEIJIBAN</h3>
+        <h3>KEIJIBAN</h3>
         </div>
 
         <div class="comment-container">
@@ -137,31 +126,36 @@
                 }
             }
 
+
             if(!empty($_POST['name']) && !empty($_POST['comment']) && !empty($_POST['hidden'])&& !empty($_POST['pass']) && !empty($_POST['edit'])) {
 
-               /* $edit = $_POST["edit"];
+
+                //内容の変更の方法２　試し済み
+                /*$edit = $_POST["edit"];
                 $name = $_POST["name"];
                 $comment = $_POST["comment"];
-                $sql = "update keijiban_tb set name='$name', comment='$comment' where id =$edit";
+                $sql = "update keijiban_tb set name='$name', comment='$comment' where id ='$edit'";
                 $result = $pdo->query($sql);
 
-               */
-                //内容の変更の方法２　試し済み
+*/
+
                 // UPDATE文を変数に格納
 
                 $sql = 'update keijiban_tb set name =:name, comment=:comment, pass=:pass, where id = :value';
                 //SQLを準備する
-                $stmt = $pdo -> prepare($sql);
 
-                $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-                $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
-                $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
-                $stmt->bindParam(':value', $edit, PDO::PARAM_STR);
+                $stmt = $pdo->prepare($sql);
 
-                $name = $_POST['name'];
-                $comment = $_POST['comment'];
-                $pass=$_POST['pass'];
-                $edit=$_POST['edit'];
+                    $name = $_POST['name'];
+                    $comment = $_POST['comment'];
+                    $pass=$_POST['pass'];
+                    $edit=$_POST['edit'];
+
+                    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+                    $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
+                    $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
+                    $stmt->bindParam(':value', $edit, PDO::PARAM_STR);
+
 
                 //prepare で書かれたものをここで実行する
                 $stmt->execute();
@@ -171,17 +165,31 @@
 
                 //名無しさん
 
-            }else if(empty($_POST['name']) && !empty($_POST['comment']) && !empty($_POST['hidden'])){
+            }elseif(empty($_POST['name']) && !empty($_POST['comment']) && !empty($_POST['hidden'])&& !empty($_POST['pass']) && !empty($_POST['edit'])) {
 
 
-                    $edit = $_POST["edit"];
-                    $name = "名無しさん";
-                    $comment = $_POST["comment"];
-                    $sql = "update keijiban_tb set name='$name', comment='$comment' where id =$edit";
-                    $result = $pdo->query($sql);
+                // UPDATE文を変数に格納
 
+                $sql = 'update keijiban_tb set name =:name, comment=:comment, pass=:pass, where id = :value';
+                //SQLを準備する
+                $stmt = $pdo -> prepare($sql);
 
-                 }
+                $name = "名無しさん";
+                $comment = $_POST['comment'];
+                $pass=$_POST['pass'];
+                $edit=$_POST['edit'];
+
+                $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+                $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
+                $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
+
+                //prepare で書かれたものをここで実行する
+                $stmt->execute();
+
+                // 更新完了のメッセージ
+                echo '更新完了しました';
+
+            }
 
             ?>
         </div>
