@@ -1,4 +1,15 @@
-        <h3>KEIJIBAN</h3>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="content-type" charset="UTF-8">
+	<title>My Web Page</title>
+	 <link rel="stylesheet" href="kadai.css">
+</head>　
+
+<body>
+	<div class="comment-section">
+        <div class="section-title">
+            <h3>KEIJIBAN</h3>
         </div>
 
         <div class="comment-container">
