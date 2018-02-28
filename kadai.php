@@ -140,21 +140,10 @@
 
             if(!empty($_POST['name']) && !empty($_POST['comment']) && !empty($_POST['hidden'])&& !empty($_POST['pass']) && !empty($_POST['edit'])) {
 
-
-                //内容の変更の方法２　試し済み
-                /*$edit = $_POST["edit"];
-                $name = $_POST["name"];
-                $comment = $_POST["comment"];
-                $sql = "update keijiban_tb set name='$name', comment='$comment' where id ='$edit'";
-                $result = $pdo->query($sql);
-
-*/
-
                 // UPDATE文を変数に格納
 
                 $sql = 'update keijiban_tb set name =:name, comment=:comment, pass=:pass, where id = :value';
                 //SQLを準備する
-
                 $stmt = $pdo->prepare($sql);
 
                     $name = $_POST['name'];
@@ -166,15 +155,24 @@
                     $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
                     $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
                     $stmt->bindParam(':value', $edit, PDO::PARAM_STR);
-
+		
+		//内容の変更の方法２　試し済み結果変わらず更新されない
+                /*$edit = $_POST["edit"];
+                $name = $_POST["name"];
+                $comment = $_POST["comment"];
+                $sql = "update keijiban_tb set name='$name', comment='$comment' where id ='$edit'";
+                $result = $pdo->query($sql);
+		*/
 
                 //prepare で書かれたものをここで実行する
                 $stmt->execute();
 
                 // 更新完了のメッセージ
                 echo '更新完了しました';
+		    
+		   
 
-                //名無しさん
+                //名無しさんの場合
 
             }elseif(empty($_POST['name']) && !empty($_POST['comment']) && !empty($_POST['hidden'])&& !empty($_POST['pass']) && !empty($_POST['edit'])) {
 
